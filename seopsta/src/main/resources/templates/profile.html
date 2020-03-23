@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Seopstagram</title>
+
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/profile.css">
+    <link rel="shortcut icon" href="/imgs/instagram.png">
+</head>
+<body>
+<section id="container">
+    <header th:insert="menu.html"></header>
+    <div id="main_container">
+        <section class="b_inner">
+            <div class="hori_cont">
+                <div class="profile_wrap">
+                    <div class="profile_img">
+                        <img src="/imgs/defaultimage.png" alt="착한호랑이">
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <div class="top">
+                        <div class="user_name">KindTiger</div> <!-- 유저 닉네임 -->
+                        <a href="#" class="profile_edit">프로필편집</a>
+                        <a href="#" class="logout">로그아웃</a>
+                    </div>
+
+                    <ul class="middle">
+                        <li>
+                            <span>게시물</span>
+                            <span>3</span>
+                        </li>
+                        <li>
+                            <span>팔로워</span>
+                            <span>3</span>
+                        </li>
+                        <li>
+                            <span>팔로우</span>
+                            <span>3</span>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+
+            <div class="contents_container">
+                <div class="pic">
+                    <a href="#"><img src="/imgs/img_section/img01.jpg" alt=""></a>
+                </div>
+                <div class="pic">
+                    <a href="#"><img src="/imgs/img_section/img02.jpg" alt=""></a>
+                </div>
+                <div class="pic">
+                    <a href="#"><img src="/imgs/img_section/img03.jpg" alt=""></a>
+                </div>
+                <div class="pic">
+                    <a href="#"><img src="/imgs/img_section/img02.jpg" alt=""></a>
+                </div>
+                <div class="pic">
+                    <a href="#"><img src="/imgs/img_section/img03.jpg" alt=""></a>
+                </div>
+                <div class="pic">
+                    <a href="#"><img src="/imgs/img_section/img01.jpg" alt=""></a>
+                </div>
+                <div class="pic">
+                    <a href="#"> <img src="/imgs/img_section/img02.jpg" alt=""></a>
+                </div>
+                <div class="pic">
+                    <a href="#"> <img src="/imgs/img_section/img03.jpg" alt=""></a>
+                </div>
+                <div class="pic">
+                    <a href="#"> <img src="/imgs/img_section/img01.jpg" alt=""></a>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+<script src="/js/profile.js"></script>
+</body>
+</html>

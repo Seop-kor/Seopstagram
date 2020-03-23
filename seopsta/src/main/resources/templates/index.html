@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Seopstagram</title>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="shortcut icon" href="/imgs/instagram.png">
+</head>
+<body>
+<section id="container">
+    <header id="header" th:include="menu.html"></header>
+
+    <section id="main_container">
+        <div class="inner">
+            <div class="contents_box">
+                <!-- 여기서 foreach문  -->
+                <article class="contents" th:each="image: ${boards}">
+                    <header class="top">
+                        <div class="user_container">
+                            <div class="profile_img">
+                                <img th:attr="src=${userprofileimg}, alt='프로필사진'">
+                            </div>
+                            <div class="user_name">
+                                <div class="nick_name m_text" th:text="${usernick}"></div>
+                                <div class="country s_text">Seoul</div>
+                            </div>
+                        </div>
+
+                        <div class="sprite_more_icon" data-name="more">
+                            <ul class="toggle_box">
+                                <li><input type="submit" class="follow" value="팔로우" data-name="follow"></li>
+                                <li>수정</li>
+                                <li>삭제</li>
+                            </ul>
+                        </div>
+                    </header>
+
+                    <div class="img_section">
+                        <div class="trans_inner">
+                            <div><img th:attr="src=${image.boardimg}, alt=${image.boardimg}"></div>
+                        </div>
+                    </div>
+
+                    <div class="bottom_icons">
+                        <div class="left_icons">
+                            <div class="heart_btn">
+                                <button type="button" class="sprite_heart_icon_outline" data-name="heartbeat"></button>
+                            </div>
+                            <div class="sprite_bubble_icon">
+                            </div>
+                            <div class="sprite_share_icon" data-name="share"></div>
+                        </div>
+                        <div class="right_icon">
+                            <div class="sprite_bookmark_outline" data-name="bookmark"></div>
+                        </div>
+                    </div>
+
+                    <div class="likes m_text">
+                        좋아요
+                        <span id="like-count" th:text="${image.thislike}"></span>
+                        <span>개</span>
+                    </div>
+
+                    <div class="comment_container">
+                        <div class="comment">
+                            <div class="comment-detail">
+                                <div class="nick_name m_text" th:text="${usernick}"></div>
+                                <div th:text="#{image.comments}"></div>
+                            </div>
+                        </div>
+                        <div class="small_heart">
+                            <div class="sprite_small_heart_icon_outline"></div>
+                        </div>
+                    </div>
+
+                    <div class="timer">1시간 전 <!-- 여기도 이제 시간받아서 계산하는걸로 하자 --></div>
+
+                    <div class="comment_field" id="add-comment">
+                        <input type="text" placeholder="댓글달기..." name="content">
+                        <div class="upload_btn m_text" data-name="comment">게시</div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+</section>
+<script src="/js/main.js"></script>
+<script>
+    $.ajax({
+        url: "http://localhost:8080/getauth",
+        method: "GET"
+    }).done(function (data) {
+        window.sessionStorage.setItem("token", data);
+    });
+    $("#search-field").keydown(function (key){
+        if(key.keyCode === 13){
+            const id = $("#search-field").value();
+            $.ajax("http://localhost:8080/find?id="+id)
+        }
+    });
+</script>
+</body>
+</html>
