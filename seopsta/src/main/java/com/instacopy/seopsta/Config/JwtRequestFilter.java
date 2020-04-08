@@ -26,16 +26,17 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
-        final String requestTokenHeader = httpServletRequest.getHeader("Authorization");
-        final String requestTokenBody = httpServletRequest.getParameter("Authorization");
+//        final String requestTokenHeader = httpServletRequest.getHeader("Authorization");
+        final String requestTokenSession;
+        if(httpServletRequest.getSession().getAttribute("Authorization") == null){
+            requestTokenSession = null;
+        }else{
+            requestTokenSession = httpServletRequest.getSession().getAttribute("Authorization").toString();
+        }
         String username = null;
         String jwtToken = null;
-        if((requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) || requestTokenBody != null && requestTokenBody.startsWith("Bearer ")){
-            if(requestTokenHeader != null && requestTokenBody ==null){
-                jwtToken = requestTokenHeader.substring(7);
-            }else{
-                jwtToken = requestTokenBody.substring(7);
-            }
+        if(requestTokenSession != null && requestTokenSession.startsWith("Bearer ")){
+            jwtToken = requestTokenSession.substring(7);
             try{
                 username = jwtTokenUtil.getUsernameFromToken(jwtToken);
             }catch (IllegalArgumentException e){

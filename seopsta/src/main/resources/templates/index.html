@@ -21,17 +21,16 @@
                     <header class="top">
                         <div class="user_container">
                             <div class="profile_img">
-                                <img th:attr="src=${userprofileimg}, alt='프로필사진'">
+                                <img th:attr="src=${image.userprofileimg}, alt='프로필사진'">
                             </div>
                             <div class="user_name">
-                                <div class="nick_name m_text" th:text="${usernick}"></div>
+                                <div class="nick_name m_text" th:text="${image.usernick}"></div>
                                 <div class="country s_text">Seoul</div>
                             </div>
                         </div>
 
                         <div class="sprite_more_icon" data-name="more">
                             <ul class="toggle_box">
-                                <li><input type="submit" class="follow" value="팔로우" data-name="follow"></li>
                                 <li>수정</li>
                                 <li>삭제</li>
                             </ul>
@@ -67,8 +66,8 @@
                     <div class="comment_container">
                         <div class="comment">
                             <div class="comment-detail">
-                                <div class="nick_name m_text" th:text="${usernick}"></div>
-                                <div th:text="#{image.comments}"></div>
+                                <div class="nick_name m_text" th:text="${image.usernick}"></div>
+                                <div th:text="${image.content}"></div>
                             </div>
                         </div>
                         <div class="small_heart">
@@ -89,18 +88,16 @@
 </section>
 <script src="/js/main.js"></script>
 <script>
-    $.ajax({
-        url: "http://localhost:8080/getauth",
-        method: "GET"
-    }).done(function (data) {
-        window.sessionStorage.setItem("token", data);
-    });
-    $("#search-field").keydown(function (key){
-        if(key.keyCode === 13){
-            const id = $("#search-field").value();
-            $.ajax("http://localhost:8080/find?id="+id)
-        }
-    });
+    // function followtest() {
+    //     $.ajax({
+    //         url: '/following',
+    //         method: 'post',
+    //         data: {
+    //             followingid: "user",
+    //             followingnick: "user"
+    //         }
+    //     });
+    // }
 </script>
 </body>
 </html>

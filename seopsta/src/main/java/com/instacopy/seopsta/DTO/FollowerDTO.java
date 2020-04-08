@@ -11,19 +11,19 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class FollowerDTO {
-    private String id;
+    private int followernumber;
     private String follwerid;
     private String follwernick;
 
     public InstaEntity toEntity(){
-        FollowerEntity followerEntity = FollowerEntity.builder().id(id).follwerid(follwerid).follwernick(follwernick).build();
-        InstaEntity instaEntity = InstaEntity.builder().follwers(followerEntity).build();
+        FollowerEntity followerEntity = FollowerEntity.builder().followernumber(followernumber).follwerid(follwerid).follwernick(follwernick).build();
+        InstaEntity instaEntity = InstaEntity.builder().followers(followerEntity).build();
         return instaEntity;
     }
 
     @Builder
-    public FollowerDTO(String id, String follwerid, String follwernick){
-        this.id = id;
+    public FollowerDTO(int followernumber, String follwerid, String follwernick){
+        this.followernumber = followernumber;
         this.follwerid = follwerid;
         this.follwernick = follwernick;
     }

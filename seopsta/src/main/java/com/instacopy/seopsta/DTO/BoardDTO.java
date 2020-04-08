@@ -20,7 +20,7 @@ number   | int         | NO   | PRI | NULL    | auto_increment |
 @NoArgsConstructor
 @ToString
 public class BoardDTO {
-    private String usernick;
+    private String userid;
     private int boardid;
     private String boardimg;
     private String content;
@@ -29,20 +29,17 @@ public class BoardDTO {
 
     public InstaEntity toEntity(){
         BoardEntity boardEntity = BoardEntity.builder().boardid(boardid).boardimg(boardimg).content(content).thislike(thislike).hashtag(hashtag).build();
-        InstaEntity instaEntity = InstaEntity.builder().usernick(usernick).boards(boardEntity).build();
+        InstaEntity instaEntity = InstaEntity.builder().userid(userid).boards(boardEntity).build();
         return instaEntity;
     }
 
-    public void setUsernick(String usernick){
-        this.usernick = usernick;
-    }
-
     @Builder
-    public BoardDTO(int boardid, String boardimg, String content, String[] hashtag){
+    public BoardDTO(int boardid, String boardimg, String content, String[] hashtag, String userid){
         this.boardid = boardid;
         this.boardimg = boardimg;
         this.content = content;
         this.thislike = 0;
         this.hashtag = hashtag;
+        this.userid = userid;
     }
 }

@@ -5,10 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.data.mongodb.core.index.Indexed;
 
 import javax.persistence.EntityListeners;
-import javax.xml.stream.events.Comment;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,6 +15,8 @@ import java.util.List;
 @Getter
 @EntityListeners(AuditingEntityListener.class)
 public class BoardEntity implements Serializable {
+    private String usernick;
+    private String userprofileimg;
     private int boardid;
     private String boardimg;
     private String content;
@@ -29,7 +29,7 @@ public class BoardEntity implements Serializable {
     @Builder
     public BoardEntity(int boardid, String boardimg, String content, int thislike, String[] hashtag, CommentEntity comment){
         this.boardid = boardid;
-        this.boardimg = boardimg;
+        this.boardimg = "C:\\Image\\BoardImage\\" + boardimg;
         this.content = content;
         this.thislike = thislike;
         this.hashtag = hashtag;
@@ -47,5 +47,13 @@ public class BoardEntity implements Serializable {
 
     public int commentsize(){
         return ((List<CommentEntity>)comments).size();
+    }
+
+    public void setUsernick(String usernick){
+        this.usernick = usernick;
+    }
+
+    public void setUserprofileimg(String userprofileimg){
+        this.userprofileimg = userprofileimg;
     }
 }

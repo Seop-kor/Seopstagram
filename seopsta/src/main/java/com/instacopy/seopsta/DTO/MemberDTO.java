@@ -6,8 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
-
 @Data
 @NoArgsConstructor
 @ToString
@@ -30,6 +28,6 @@ public class MemberDTO {
         this.userid = userid;
         this.userpass = userpass;
         this.usernick = usernick;
-        this.userprofileimg = userprofileimg;
+        this.userprofileimg = "C:\\Image\\ProfileImage\\" + userprofileimg;
     }
 }

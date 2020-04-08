@@ -2,7 +2,6 @@ const tapContainer = document.querySelector('.about');
 const flex_Container = document.querySelectorAll('.contents_container');
 const taps = document.querySelectorAll('.about > span');
 
-
 function openCity(e){
     let elem = e.target;
     
@@ -26,4 +25,4 @@ function openCity(e){
 }
 
 
-tapContainer.addEventListener('click', openCity);
+// tapContainer.addEventListener('click', openCity);

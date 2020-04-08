@@ -13,7 +13,6 @@ import javax.persistence.EntityListeners;
 import javax.persistence.Id;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -33,31 +32,53 @@ public class InstaEntity implements Serializable {
     @LastModifiedDate
     private LocalDateTime updatedate;
     private Object boards;
-    private Object follwers;
+    private Object followers;
+    private Object followings;
 
     @Builder
-    public InstaEntity(String id, String userid, String userpass, String usernick, String userprofileimg, BoardEntity boards, FollowerEntity follwers){
+    public InstaEntity(String id, String userid, String userpass, String usernick, String userprofileimg, BoardEntity boards, FollowerEntity followers, FollowingEntity followings){
         this.id = id;
         this.userid = userid;
         this.userpass = userpass;
         this.usernick = usernick;
-        this.userprofileimg = userprofileimg;
+        this.userprofileimg = "C:\\Image\\ProfileImage\\" + userprofileimg;
         this.boards = boards;
-        this.follwers = follwers;
+        this.followers = followers;
+        this.followings = followings;
     }
 
-    public InstaEntity(String id, String userid, String userpass, String usernick, String userprofileimg, List<BoardEntity> boards, List<FollowerEntity> follwers){
+    public InstaEntity(String id, String userid, String userpass, String usernick, String userprofileimg, List<BoardEntity> boards, List<FollowerEntity> followers, List<FollowingEntity> followings){
         this.id = id;
         this.userid = userid;
         this.userpass = userpass;
         this.usernick = usernick;
         this.userprofileimg = userprofileimg;
         this.boards = boards;
-        this.follwers = follwers;
+        this.followers = followers;
+        this.followings = followings;
     }
 
     public int boardsize(){
-        List<BoardEntity> list = (List<BoardEntity>)boards;
-        return list.size();
+        if(boards != null){
+            List<BoardEntity> list = (List<BoardEntity>)boards;
+            return list.size();
+        }
+        return 0;
+    }
+
+    public int followersize(){
+        if(followers != null){
+            List<FollowerEntity> list = (List<FollowerEntity>)followers;
+            return list.size();
+        }
+        return 0;
+    }
+
+    public int followingsize(){
+        if(followers != null){
+            List<FollowingEntity> list = (List<FollowingEntity>)followings;
+            return list.size();
+        }
+        return 0;
     }
 }

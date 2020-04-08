@@ -62,7 +62,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // /login/authenticate, /singup(post), /login/{id}(GET), /board(GET), /product(GET), /product{no} (GET) permitALL()
         // /board/** (DELETE, POST),
 //        http.csrf().disable().authorizeRequests().antMatchers("/login/authenticate").permitAll().antMatchers(HttpMethod.POST,"/signup").permitAll().antMatchers("/login/**").permitAll().antMatchers(HttpMethod.GET,"/product/**").permitAll().antMatchers(HttpMethod.GET,"/board").permitAll().antMatchers(HttpMethod.PUT,"/board/**").permitAll().anyRequest().authenticated().and().exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.csrf().disable().authorizeRequests().mvcMatchers("/profile").authenticated().mvcMatchers("/post").authenticated().mvcMatchers("/post.action").authenticated().mvcMatchers("/post.Imageaction").authenticated().anyRequest().permitAll().and().exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.csrf().disable()
+                .authorizeRequests().mvcMatchers("/profile").authenticated()
+                .mvcMatchers("/post").authenticated()
+                .anyRequest().permitAll()
+                .and()
+                .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 }

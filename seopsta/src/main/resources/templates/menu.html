@@ -16,7 +16,9 @@
         </h1>
 
         <div class="search_box">
-            <input type="text" placeholder="검색" id="search-field" name="usernick">
+            <form action="/find" method="get" id="searchform">
+                <input type="text" placeholder="검색" id="search-field" name="usernick">
+            </form>
             <div class="fake_field">
                 <span class="sprite_small_search_icon"></span>
                 <span>검색</span>
@@ -24,18 +26,23 @@
         </div>
 
         <div class="right_icons">
-            <a id="post" href="#"><div class="sprite_camera_icon"></div></a>
+            <a id="post" href="/post"><div class="sprite_camera_icon"></div></a>
             <a id="dm" href="#"><div class="sprite_bubble_icon"></div></a>
-            <a id="profile" href="#"><div class="sprite_user_icon_outline"></div></a>
+            <a id="profile" href="/profile"><div class="sprite_user_icon_outline"></div></a>
         </div>
     </section>
 </header>
 <script>
-    $("#post").click(function () {
-        $("#post").attr("href","/post?Authorization=Bearer "+window.sessionStorage.getItem("token"));
-    });
-    $("#profile").click(function () {
-        $("#profile").attr("href","/post?Authorization=Bearer "+window.sessionStorage.getItem("token"));
+    $("#search-field").keydown(function (key){
+        if(key.keyCode === 13){
+            // const id = $("#search-field").value();
+            // $.ajax("http://localhost:8080/find?id="+id).done(function(data){
+            //     if(data === true){
+            //         location.href='searchuser.html';
+            //     }
+            // });
+            document.getElementById('searchform').submit();
+        }
     });
 </script>
 </body>
