@@ -4,6 +4,7 @@ import com.instacopy.seopsta.DTO.BoardDTO;
 import com.instacopy.seopsta.DTO.FollowerDTO;
 import com.instacopy.seopsta.DTO.FollowingDTO;
 import com.instacopy.seopsta.DTO.MemberDTO;
+import com.instacopy.seopsta.Entity.BoardEntity;
 import com.instacopy.seopsta.Entity.FollowingEntity;
 import com.instacopy.seopsta.Entity.InstaEntity;
 import com.instacopy.seopsta.Repository.InstaRepository;
@@ -103,6 +104,14 @@ public class InstaService {
 
     public void unfollow(FollowingDTO followingDTO, String myname){
         
+    }
+
+    public void like(BoardDTO boardDTO){
+        Query query = new Query();
+        Update update = new Update();
+        query.addCriteria(Criteria.where("usernick").is(boardDTO.getUsernick()).and("boardid").is(boardDTO.getBoardid()));
+        update.set("thislike",boardDTO.getThislike());
+        mongoTemplate.updateFirst(query,update,InstaEntity.class);
     }
 
 }

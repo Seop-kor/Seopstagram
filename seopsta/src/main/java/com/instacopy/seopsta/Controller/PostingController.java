@@ -38,7 +38,7 @@ public class PostingController {
 
     @PostMapping("/post.Imageaction")
     public @ResponseBody boolean postimage(@RequestParam(value = "file")MultipartFile file) throws Exception{
-        BufferedOutputStream bs = new BufferedOutputStream(new FileOutputStream("C:/Image/ProfileImage/"
+        BufferedOutputStream bs = new BufferedOutputStream(new FileOutputStream("C:/Image/BoardImage/"
                 + file.getOriginalFilename()));
         bs.write(file.getBytes());
         bs.close();

@@ -9,7 +9,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.EntityListeners;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -24,30 +23,23 @@ public class BoardEntity implements Serializable {
     @CreatedDate
     private LocalDateTime writedate;
     private String[] hashtag;
-    private Object comments;
 
     @Builder
-    public BoardEntity(int boardid, String boardimg, String content, int thislike, String[] hashtag, CommentEntity comment){
+    public BoardEntity(int boardid, String boardimg, String content, int thislike, String[] hashtag){
         this.boardid = boardid;
         this.boardimg = "C:\\Image\\BoardImage\\" + boardimg;
         this.content = content;
         this.thislike = thislike;
         this.hashtag = hashtag;
-        this.comments = comment;
     }
-
-    public BoardEntity(int boardid, String boardimg, String content, int thislike, String[] hashtag, List<CommentEntity> comment){
-        this.boardid = boardid;
-        this.boardimg = boardimg;
-        this.content = content;
-        this.thislike = thislike;
-        this.hashtag = hashtag;
-        this.comments = comment;
-    }
-
-    public int commentsize(){
-        return ((List<CommentEntity>)comments).size();
-    }
+//
+//    public BoardEntity(int boardid, String boardimg, String content, int thislike, String[] hashtag){
+//        this.boardid = boardid;
+//        this.boardimg = boardimg;
+//        this.content = content;
+//        this.thislike = thislike;
+//        this.hashtag = hashtag;
+//    }
 
     public void setUsernick(String usernick){
         this.usernick = usernick;

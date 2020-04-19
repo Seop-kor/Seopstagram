@@ -75,7 +75,7 @@ public class InstaEntity implements Serializable {
     }
 
     public int followingsize(){
-        if(followers != null){
+        if(followings != null){
             List<FollowingEntity> list = (List<FollowingEntity>)followings;
             return list.size();
         }
